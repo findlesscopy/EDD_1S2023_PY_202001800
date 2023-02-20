@@ -6,4 +6,6 @@ import (
 
 func main() {
 	utils.MenuPrincipal()
+	//utils.LecturaData("prueba.csv")
+
 }
