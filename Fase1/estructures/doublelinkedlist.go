@@ -75,3 +75,14 @@ func (l *ListaDoblementeEnlazada) swap(node1, node2 *NodoDoble) {
 	node2.apellido = tempApellido
 	node2.password = tempPassword
 }
+
+func (l *ListaDoblementeEnlazada) Login(carnet int, password string) bool {
+	aux := l.primero
+	for aux != nil {
+		if aux.carnet == carnet && aux.password == password {
+			return true
+		}
+		aux = aux.siguiente
+	}
+	return false
+}

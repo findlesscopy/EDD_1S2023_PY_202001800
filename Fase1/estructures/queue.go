@@ -1,10 +1,7 @@
 package estructures
 
 import (
-	"bufio"
 	"fmt"
-	"os"
-	"strings"
 )
 
 type NodoCola struct {
@@ -18,6 +15,7 @@ type NodoCola struct {
 type Cola struct {
 	primero *NodoCola
 	ultimo  *NodoCola
+	size    int
 }
 
 func (c *Cola) Insertar(carnet int, nombre string, apellido string, password string) {
@@ -25,34 +23,38 @@ func (c *Cola) Insertar(carnet int, nombre string, apellido string, password str
 	if c.primero == nil {
 		c.primero = nuevoNodo
 		c.ultimo = nuevoNodo
+		c.size++
 	} else {
 		c.ultimo.siguiente = nuevoNodo
 		c.ultimo = nuevoNodo
+		c.size++
 	}
 }
 
 func (c *Cola) Imprimir() {
-	lista := ListaDoblementeEnlazada{}
 	aux := c.primero
 	for aux != nil {
-		fmt.Println("Carnet: ", aux.carnet, "Nombre: ", aux.nombre, "Apellido: ", aux.apellido, "Contraseña: ", aux.password)
-		fmt.Println("Desea agregar a la lista? 1.Si 2.No")
-		reader := bufio.NewReader(os.Stdin)
-		input, _ := reader.ReadString('\n')
-		estado := strings.TrimRight(input, "\r\n")
-		if estado == "1" {
-			lista.Insertar(aux.carnet, aux.nombre, aux.apellido, aux.password)
-			aux = aux.siguiente
-		} else {
-			fmt.Println("No se agrego a la lista")
-			if c.primero == nil {
-				fmt.Println("La cola esta vacia")
-			} else {
-				fmt.Println("Valor eliminado:", c.primero.carnet, c.primero.nombre, c.primero.apellido, c.primero.password)
-				c.primero = c.primero.siguiente
-			}
-			aux = aux.siguiente
-		}
+		fmt.Println("-Carnet: ", aux.carnet, "-Nombre: ", aux.nombre, "-Apellido: ", aux.apellido, "-Contraseña: ", aux.password)
+		aux = aux.siguiente
+	}
+}
 
+func (c *Cola) RetornarEstudiante() (int, string, string, string, int) {
+	aux := c.primero
+	if aux == nil {
+		//fmt.Println("No hay estudiantes en Cola")
+		return -1, "", "", "", -1
+	} else {
+		return aux.carnet, aux.nombre, aux.apellido, aux.password, c.size
+	}
+}
+
+func (c *Cola) Eliminar() {
+	if c.primero == nil {
+		fmt.Println("La cola esta vacia")
+	} else {
+		//fmt.Println("Valor eliminado:", c.primero.carnet, c.primero.nombre, c.primero.apellido, c.primero.password)
+		c.primero = c.primero.siguiente
+		c.size--
 	}
 }
