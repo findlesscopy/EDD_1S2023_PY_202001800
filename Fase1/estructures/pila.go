@@ -54,7 +54,7 @@ func (p *Pila) Peek() {
 	}
 }
 
-func (p *Pila) Graficar() {
+func (p *Pila) GenerarGrafo() {
 	nombre_archivo := "./pila.dot"
 	nombre_imagen := "pila.jpg"
 	texto := "digraph pila{\n"
@@ -107,7 +107,7 @@ func escribirArchivoDot(contenido string, nombre_archivo string) {
 
 func ejecutar(nombre_imagen string, archivo_dot string) {
 	path, _ := exec.LookPath("dot")
-	cmd, _ := exec.Command(path, "-Tjpeg", archivo_dot).Output()
+	cmd, _ := exec.Command(path, "-Tjpg", archivo_dot).Output()
 	mode := 0777
 	_ = ioutil.WriteFile(nombre_imagen, cmd, os.FileMode(mode))
 }

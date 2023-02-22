@@ -1,5 +1,0 @@
-digraph pila{
-rankdir=LR;
-node[shape = record]nodo0 [label="|Se rechazó al estudiante: Juana Gonzales con carnet: 1082380 a las: 2023-02-21 00:22:46|Se acepto al estudiante: Roberto Gómez con carnet: 200155646 a las: 2023-02-21 00:22:45|Se acepto al estudiante: Jose Ibarra con carnet: 202001800 a las: 2023-02-21 00:22:45"]; 
-}"]; 
-}

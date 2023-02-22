@@ -16,6 +16,7 @@ import (
 var lista *estructures.ListaDoblementeEnlazada = &estructures.ListaDoblementeEnlazada{}
 var cola *estructures.Cola = &estructures.Cola{}
 var pila_admin *estructures.Pila = &estructures.Pila{}
+var pila_estudiantes *estructures.ListaDePilas = &estructures.ListaDePilas{}
 
 //var pila *estructures.Pila = &estructures.Pila{}
 
@@ -80,7 +81,7 @@ func MenuAdmin() {
 		fmt.Println("| 2. Ver estudiantes del sistema    |")
 		fmt.Println("| 3. Registrar nuevos estudiantes   |")
 		fmt.Println("| 4. Carga masiva de estudiantes    |")
-		fmt.Println("| 5. Log del Administrador          |")
+		fmt.Println("| 5. Reportes en Graphviz           |")
 		fmt.Println("| 6. Salir                          |")
 		fmt.Println("=====================================")
 		fmt.Print("Elija una opción: ")
@@ -93,7 +94,7 @@ func MenuAdmin() {
 		case "1":
 			EstudiantesPendientes()
 		case "2":
-			fmt.Println("=======Lista de Estudiantes=======")
+			fmt.Println("=====================Lista de Estudiantes=====================")
 			lista.OrdenarPorCarnet()
 			lista.Imprimir()
 		case "3":
@@ -103,8 +104,9 @@ func MenuAdmin() {
 			fmt.Println("=======Carga Masiva=======")
 			CargaMasiva()
 		case "5":
-			fmt.Println("=======Log del Administrador=======")
-			pila_admin.Graficar()
+
+			//pila_admin.Graficar()
+			Reportes()
 		case "6":
 			fmt.Println("Saliendo...")
 			return
@@ -115,14 +117,14 @@ func MenuAdmin() {
 }
 
 func EstudiantesPendientes() {
-	carnet, nombre, apellido, password, tamanio := cola.RetornarEstudiante()
+	carnet, nombre, password, tamanio := cola.RetornarEstudiante()
 	if carnet == -1 {
 		fmt.Println("¡No hay estudiantes pendientes!")
 	} else {
 		for {
 			fmt.Println()
 			fmt.Println("Estudiante pendientes: ", tamanio)
-			fmt.Println("Nombre: ", nombre, "Apellido: ", apellido)
+			fmt.Println("Nombre: ", nombre)
 			fmt.Println("1. Aceptar al estudiante")
 			fmt.Println("2. Rechazar al estudiante")
 			fmt.Println("3. Salir")
@@ -133,20 +135,20 @@ func EstudiantesPendientes() {
 
 			case "1":
 				fmt.Println("-------✔ Estudiante aceptado ✔-------")
-				lista.Insertar(carnet, nombre, apellido, password)
-				pila_admin.Push("Se acepto al estudiante: " + nombre + " " + apellido + " con carnet: " + strconv.Itoa(carnet) + " a las: " + time.Now().Format("2006-01-02 15:04:05"))
+				lista.Insertar(carnet, nombre, password)
+				pila_admin.Push("Se acepto al estudiante: " + nombre + " con carnet: " + strconv.Itoa(carnet) + " a las: " + time.Now().Format("2006-01-02 15:04:05"))
 				cola.Eliminar()
-				carnet, nombre, apellido, password, tamanio = cola.RetornarEstudiante()
+				carnet, nombre, password, tamanio = cola.RetornarEstudiante()
 				if carnet == -1 {
 					fmt.Println("¡No hay estudiantes pendientes!")
 					return
 				}
 			case "2":
 				fmt.Println("-----xX Estudiante rechazado Xx-----")
-				pila_admin.Push("Se rechazó al estudiante: " + nombre + " " + apellido + " con carnet: " + strconv.Itoa(carnet) + " a las: " + time.Now().Format("2006-01-02 15:04:05"))
+				pila_admin.Push("Se rechazó al estudiante: " + nombre + " con carnet: " + strconv.Itoa(carnet) + " a las: " + time.Now().Format("2006-01-02 15:04:05"))
 
 				cola.Eliminar()
-				carnet, nombre, apellido, password, tamanio = cola.RetornarEstudiante()
+				carnet, nombre, password, tamanio = cola.RetornarEstudiante()
 				if carnet == -1 {
 					fmt.Println("¡No hay estudiantes pendientes!")
 					return
@@ -185,7 +187,7 @@ func RegistrarEstudiante() {
 	input, _ = reader.ReadString('\n')
 	password := strings.TrimRight(input, "\r\n")
 	fmt.Println("Se ha ingresado en la cola el estudiante: ", nombre, apellido, "con carnet: ", carnet)
-	cola.Insertar(carnet1, nombre, apellido, password)
+	cola.Insertar(carnet1, nombre+" "+apellido, password)
 }
 
 func CargaMasiva() {
@@ -230,7 +232,7 @@ func CargaMasiva() {
 			log.Fatal(err)
 		}
 		// Agregar la estructura Person a la lista de personas
-		cola.Insertar(carnet, row[1], row[2], row[3])
+		cola.Insertar(carnet, row[1], row[2])
 	}
 	fmt.Println("Carga masiva realizada con éxito")
 }
@@ -238,26 +240,41 @@ func CargaMasiva() {
 func MenuEstudiante(carnet int) {
 	fmt.Println("Bienvenido estudiante: ", carnet)
 	fmt.Println("===============Bitácora de ingresos===============")
-	Formato_hora()
+	carnet, nombre := lista.BuscarUsuario(carnet)
+	pila_estudiantes.InsertarCabecera(carnet, nombre)
+	pila_estudiantes.PushPila(carnet, "Ingreso al sistema a las: "+time.Now().Format("02-01-2006 15:04:05"))
+	pila_estudiantes.Imprimir(carnet)
 }
 
-func Formato_hora() string {
-	tiempo := time.Now() // 10:04
-	texto_final := ""
-	if tiempo.Hour() < 10 {
-		texto_final = texto_final + "0" + strconv.Itoa(tiempo.Hour()) + ":"
-	} else {
-		texto_final = texto_final + strconv.Itoa(tiempo.Hour()) + ":"
+func Reportes() {
+	for {
+		fmt.Println("================Reportes================")
+		fmt.Println("| 1. Reporte Lista Enlazada con Pilas  |")
+		fmt.Println("| 2. Reporte de La Cola                |")
+		fmt.Println("| 3. Reporte de bitácora Admin			|")
+		fmt.Println("| 4. Reporte JSON de Aceptados			|")
+		fmt.Println("| 5. Salir 							|")
+		fmt.Println("========================================")
+		reader := bufio.NewReader(os.Stdin)
+		input, _ := reader.ReadString('\n')
+		opcion := strings.TrimRight(input, "\r\n")
+		switch opcion {
+		case "1":
+			fmt.Println("Generando reporte de lista enlazada con pilas...")
+			pila_estudiantes.GenerarGrafo()
+		case "2":
+			fmt.Println("Generando reporte de la cola...")
+			cola.GenerarGrafo()
+		case "3":
+			fmt.Println("Generando reporte de bitácora admin...")
+			pila_admin.GenerarGrafo()
+		case "4":
+			lista.GenerarJSON()
+		case "5":
+			fmt.Println("Saliendo...")
+			return
+		default:
+			fmt.Println("Opcion no valida")
+		}
 	}
-	if tiempo.Minute() < 10 {
-		texto_final = texto_final + "0" + strconv.Itoa(tiempo.Minute()) + ":"
-	} else {
-		texto_final = texto_final + strconv.Itoa(tiempo.Minute()) + ":"
-	}
-	if tiempo.Second() < 10 {
-		texto_final = texto_final + "0" + strconv.Itoa(tiempo.Second())
-	} else {
-		texto_final = texto_final + strconv.Itoa(tiempo.Second())
-	}
-	return texto_final
 }
