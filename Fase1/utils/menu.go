@@ -136,6 +136,7 @@ func EstudiantesPendientes() {
 			case "1":
 				fmt.Println("-------✔ Estudiante aceptado ✔-------")
 				lista.Insertar(carnet, nombre, password)
+				pila_estudiantes.InsertarCabecera(carnet, nombre)
 				pila_admin.Push("Se acepto al estudiante: " + nombre + " con carnet: " + strconv.Itoa(carnet) + " a las: " + time.Now().Format("2006-01-02 15:04:05"))
 				cola.Eliminar()
 				carnet, nombre, password, tamanio = cola.RetornarEstudiante()
@@ -240,8 +241,8 @@ func CargaMasiva() {
 func MenuEstudiante(carnet int) {
 	fmt.Println("Bienvenido estudiante: ", carnet)
 	fmt.Println("===============Bitácora de ingresos===============")
-	carnet, nombre := lista.BuscarUsuario(carnet)
-	pila_estudiantes.InsertarCabecera(carnet, nombre)
+	carnet, _ = lista.BuscarUsuario(carnet)
+
 	pila_estudiantes.PushPila(carnet, "Ingreso al sistema a las: "+time.Now().Format("02-01-2006 15:04:05"))
 	pila_estudiantes.Imprimir(carnet)
 }
@@ -251,9 +252,9 @@ func Reportes() {
 		fmt.Println("================Reportes================")
 		fmt.Println("| 1. Reporte Lista Enlazada con Pilas  |")
 		fmt.Println("| 2. Reporte de La Cola                |")
-		fmt.Println("| 3. Reporte de bitácora Admin			|")
-		fmt.Println("| 4. Reporte JSON de Aceptados			|")
-		fmt.Println("| 5. Salir 							|")
+		fmt.Println("| 3. Reporte de bitácora Admin         |")
+		fmt.Println("| 4. Reporte JSON de Aceptados         |")
+		fmt.Println("| 5. Salir                             |")
 		fmt.Println("========================================")
 		reader := bufio.NewReader(os.Stdin)
 		input, _ := reader.ReadString('\n')

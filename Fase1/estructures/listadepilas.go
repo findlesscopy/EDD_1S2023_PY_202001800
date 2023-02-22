@@ -32,8 +32,20 @@ func (l *ListaDePilas) InsertarCabecera(carnet int, nombre string) {
 
 	if !l.BuscarEncabezado(carnet) {
 		temporal.carnet = carnet
-		temporal.siguiente = l.primero
-		l.primero = temporal
+		if l.primero == nil {
+			l.primero = temporal
+		} else {
+			anterior := l.primero
+			actual := l.primero.siguiente
+
+			for actual != nil && actual.carnet < carnet {
+				anterior = actual
+				actual = actual.siguiente
+			}
+
+			anterior.siguiente = temporal
+			temporal.siguiente = actual
+		}
 		l.size++
 	}
 }
@@ -103,11 +115,11 @@ func (l *ListaDePilas) GenerarGrafo() {
 		aux_num_cabecera2 := num_nodo_cabecera + 1
 		aux_num_cabecera3 := num_nodo_cabecera + 1
 
-		nodos_cabecera += "N" + strconv.Itoa(num_nodo_cabecera) + "[label=\"" + "Carnet: " + strconv.Itoa(temporal_cabecera.carnet) + "\nNombre: " + temporal_cabecera.nombre + "\" fixedsize=true, width=3, height=2];\n"
+		nodos_cabecera += "N" + strconv.Itoa(num_nodo_cabecera) + "[label=\"" + "Carnet: " + strconv.Itoa(temporal_cabecera.carnet) + "\nNombre: " + temporal_cabecera.nombre + "\" fixedsize=true, width=3, height=1];\n"
 		temporal_pilas := temporal_cabecera.abajo
 		aux_num_pilas := 1
 		for temporal_pilas != nil {
-			nodos_pilas += "N" + strconv.Itoa(num_nodo_pilas) + (strconv.Itoa(aux_num_pilas)) + "[arrowsize = 1, label=\"" + temporal_pilas.bitacora + "\" width=3, height=1 ];\n"
+			nodos_pilas += "N" + strconv.Itoa(num_nodo_pilas) + (strconv.Itoa(aux_num_pilas)) + "[arrowsize = 1, label=\"" + temporal_pilas.bitacora + "\" fixedsize=true, width=3, height=1 ];\n"
 			temporal_pilas = temporal_pilas.abajo
 			if temporal_pilas == nil {
 				conexiones_cabecera_pilas += "N" + strconv.Itoa(num_nodo_cabecera) + " -> N" + strconv.Itoa(aux_num_cabecera2) + ";\n"
@@ -123,8 +135,8 @@ func (l *ListaDePilas) GenerarGrafo() {
 		if temporal_cabecera == nil {
 			break
 		} else {
-			conexiones_cabecera += "N" + strconv.Itoa(num_nodo_cabecera) + " -> N" + strconv.Itoa(aux_num_cabecera) + ";\n"
-
+			conexiones_cabecera += "N" + strconv.Itoa(num_nodo_cabecera) + " -> N" + strconv.Itoa(aux_num_cabecera) + "[dir=forward];\n"
+			conexiones_cabecera += "N" + strconv.Itoa(num_nodo_cabecera) + " -> N" + strconv.Itoa(aux_num_cabecera) + "[dir=back];\n"
 			num_nodo_cabecera = num_nodo_cabecera + 1000
 		}
 	}
