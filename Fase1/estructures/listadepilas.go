@@ -30,24 +30,23 @@ type ListaDePilas struct {
 func (l *ListaDePilas) InsertarCabecera(carnet int, nombre string) {
 	temporal := &NodoCabecera{carnet: carnet, nombre: nombre}
 
-	if !l.BuscarEncabezado(carnet) {
-		temporal.carnet = carnet
-		if l.primero == nil {
+	if l.BuscarEncabezado(carnet) {
+		fmt.Println("El carnet ya existe")
+	} else {
+		if l.primero == nil || carnet < l.primero.carnet {
+			temporal.siguiente = l.primero
 			l.primero = temporal
 		} else {
-			anterior := l.primero
-			actual := l.primero.siguiente
-
-			for actual != nil && actual.carnet < carnet {
-				anterior = actual
-				actual = actual.siguiente
+			aux := l.primero
+			for aux.siguiente != nil && carnet > aux.siguiente.carnet {
+				aux = aux.siguiente
 			}
-
-			anterior.siguiente = temporal
-			temporal.siguiente = actual
+			temporal.siguiente = aux.siguiente
+			aux.siguiente = temporal
 		}
 		l.size++
 	}
+
 }
 
 func (l *ListaDePilas) PushPila(carnet int, bitacora string) {
