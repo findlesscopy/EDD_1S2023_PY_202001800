@@ -22,7 +22,7 @@
     box-shadow: 5px 5px 10px 1px rgba(0,0,0,0.2);
 }
 .side-image{
-    background-image: url("/Fase2/img/bg.jpg");
+    
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
