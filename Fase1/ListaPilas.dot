@@ -1,0 +1,179 @@
+digraph G{
+label=" Lista de Pilas ";
+node [shape=box fontsize=12 arrowsize=0.1] ;
+N1000[label="Carnet: 200819074
+Nombre: Christian Esquite" fixedsize=true, width=3, height=1];
+N2000[label="Carnet: 200819325
+Nombre: Ethel Herrarte" fixedsize=true, width=3, height=1];
+N3000[label="Carnet: 201019694
+Nombre: Henderson Hernandez" fixedsize=true, width=3, height=1];
+N4000[label="Carnet: 201222535
+Nombre: Miguel Sac" fixedsize=true, width=3, height=1];
+N5000[label="Carnet: 201325511
+Nombre: Jose Melendez" fixedsize=true, width=3, height=1];
+N6000[label="Carnet: 201403877
+Nombre: Ebany Larios" fixedsize=true, width=3, height=1];
+N7000[label="Carnet: 201503617
+Nombre: Olivert Vargas" fixedsize=true, width=3, height=1];
+N8000[label="Carnet: 201700375
+Nombre: Bryan Montepeque" fixedsize=true, width=3, height=1];
+N9000[label="Carnet: 201700490
+Nombre: Marvin Castellanos" fixedsize=true, width=3, height=1];
+N10000[label="Carnet: 201700653
+Nombre: Kevyn Girón" fixedsize=true, width=3, height=1];
+N11000[label="Carnet: 201700918
+Nombre: Cristian Suy" fixedsize=true, width=3, height=1];
+N12000[label="Carnet: 201780044
+Nombre: Leonardo Martinez" fixedsize=true, width=3, height=1];
+N13000[label="Carnet: 201800673
+Nombre: Sergio Bucaro" fixedsize=true, width=3, height=1];
+N14000[label="Carnet: 201801444
+Nombre: José Donis" fixedsize=true, width=3, height=1];
+N15000[label="Carnet: 201801683
+Nombre: Juan Augusto" fixedsize=true, width=3, height=1];
+N16000[label="Carnet: 201807411
+Nombre: Pablo Fernández" fixedsize=true, width=3, height=1];
+N17000[label="Carnet: 201900570
+Nombre: Jonatan Gonzalez" fixedsize=true, width=3, height=1];
+N18000[label="Carnet: 201900603
+Nombre: Karen Gatica" fixedsize=true, width=3, height=1];
+N19000[label="Carnet: 201902259
+Nombre: Lourdes Reyes" fixedsize=true, width=3, height=1];
+N20000[label="Carnet: 201902416
+Nombre: Julio Fernández" fixedsize=true, width=3, height=1];
+N21000[label="Carnet: 201903549
+Nombre: Alejandro Caballeros" fixedsize=true, width=3, height=1];
+N22000[label="Carnet: 201906468
+Nombre: Sergio Guix" fixedsize=true, width=3, height=1];
+N23000[label="Carnet: 201907608
+Nombre: Ludwing Lopez" fixedsize=true, width=3, height=1];
+N24000[label="Carnet: 202000544
+Nombre: Roberto Gómez" fixedsize=true, width=3, height=1];
+N25000[label="Carnet: 202001471
+Nombre: Luis Yaquian" fixedsize=true, width=3, height=1];
+N26000[label="Carnet: 202001800
+Nombre: José Ibarra" fixedsize=true, width=3, height=1];
+N27000[label="Carnet: 202002940
+Nombre: Sebastián Godoy" fixedsize=true, width=3, height=1];
+N28000[label="Carnet: 202003585
+Nombre: Diego Huite" fixedsize=true, width=3, height=1];
+N29000[label="Carnet: 202004703
+Nombre: Eduardo Cuevas" fixedsize=true, width=3, height=1];
+N30000[label="Carnet: 202004807
+Nombre: Hugo Giron" fixedsize=true, width=3, height=1];
+N31000[label="Carnet: 202010023
+Nombre: Luis Lizama" fixedsize=true, width=3, height=1];
+N32000[label="Carnet: 202010810
+Nombre: Velveth Pérez" fixedsize=true, width=3, height=1];
+N33000[label="Carnet: 202100239
+Nombre: Aída Mansilla" fixedsize=true, width=3, height=1];
+N34000[label="Carnet: 202100299
+Nombre: Mauricio Castro" fixedsize=true, width=3, height=1];
+N35000[label="Carnet: 202101648
+Nombre: Juan Valle" fixedsize=true, width=3, height=1];
+N36000[label="Carnet: 202103216
+Nombre: Sergio Ralda" fixedsize=true, width=3, height=1];
+N37000[label="Carnet: 202104782
+Nombre: Anthony Zea" fixedsize=true, width=3, height=1];
+N38000[label="Carnet: 202105561
+Nombre: Jeser Rodas" fixedsize=true, width=3, height=1];
+N39000[label="Carnet: 202109554
+Nombre: Mario Lopez" fixedsize=true, width=3, height=1];
+N40000[label="Carnet: 202111478
+Nombre: José Panaza" fixedsize=true, width=3, height=1];
+N41000[label="Carnet: 202112026
+Nombre: Josue Porres" fixedsize=true, width=3, height=1];
+N42000[label="Carnet: 202113553
+Nombre: Kevin García" fixedsize=true, width=3, height=1];
+
+
+{rank=same;
+N1000 -> N2000[dir=forward];
+N1000 -> N2000[dir=back];
+N2000 -> N3000[dir=forward];
+N2000 -> N3000[dir=back];
+N3000 -> N4000[dir=forward];
+N3000 -> N4000[dir=back];
+N4000 -> N5000[dir=forward];
+N4000 -> N5000[dir=back];
+N5000 -> N6000[dir=forward];
+N5000 -> N6000[dir=back];
+N6000 -> N7000[dir=forward];
+N6000 -> N7000[dir=back];
+N7000 -> N8000[dir=forward];
+N7000 -> N8000[dir=back];
+N8000 -> N9000[dir=forward];
+N8000 -> N9000[dir=back];
+N9000 -> N10000[dir=forward];
+N9000 -> N10000[dir=back];
+N10000 -> N11000[dir=forward];
+N10000 -> N11000[dir=back];
+N11000 -> N12000[dir=forward];
+N11000 -> N12000[dir=back];
+N12000 -> N13000[dir=forward];
+N12000 -> N13000[dir=back];
+N13000 -> N14000[dir=forward];
+N13000 -> N14000[dir=back];
+N14000 -> N15000[dir=forward];
+N14000 -> N15000[dir=back];
+N15000 -> N16000[dir=forward];
+N15000 -> N16000[dir=back];
+N16000 -> N17000[dir=forward];
+N16000 -> N17000[dir=back];
+N17000 -> N18000[dir=forward];
+N17000 -> N18000[dir=back];
+N18000 -> N19000[dir=forward];
+N18000 -> N19000[dir=back];
+N19000 -> N20000[dir=forward];
+N19000 -> N20000[dir=back];
+N20000 -> N21000[dir=forward];
+N20000 -> N21000[dir=back];
+N21000 -> N22000[dir=forward];
+N21000 -> N22000[dir=back];
+N22000 -> N23000[dir=forward];
+N22000 -> N23000[dir=back];
+N23000 -> N24000[dir=forward];
+N23000 -> N24000[dir=back];
+N24000 -> N25000[dir=forward];
+N24000 -> N25000[dir=back];
+N25000 -> N26000[dir=forward];
+N25000 -> N26000[dir=back];
+N26000 -> N27000[dir=forward];
+N26000 -> N27000[dir=back];
+N27000 -> N28000[dir=forward];
+N27000 -> N28000[dir=back];
+N28000 -> N29000[dir=forward];
+N28000 -> N29000[dir=back];
+N29000 -> N30000[dir=forward];
+N29000 -> N30000[dir=back];
+N30000 -> N31000[dir=forward];
+N30000 -> N31000[dir=back];
+N31000 -> N32000[dir=forward];
+N31000 -> N32000[dir=back];
+N32000 -> N33000[dir=forward];
+N32000 -> N33000[dir=back];
+N33000 -> N34000[dir=forward];
+N33000 -> N34000[dir=back];
+N34000 -> N35000[dir=forward];
+N34000 -> N35000[dir=back];
+N35000 -> N36000[dir=forward];
+N35000 -> N36000[dir=back];
+N36000 -> N37000[dir=forward];
+N36000 -> N37000[dir=back];
+N37000 -> N38000[dir=forward];
+N37000 -> N38000[dir=back];
+N38000 -> N39000[dir=forward];
+N38000 -> N39000[dir=back];
+N39000 -> N40000[dir=forward];
+N39000 -> N40000[dir=back];
+N40000 -> N41000[dir=forward];
+N40000 -> N41000[dir=back];
+N41000 -> N42000[dir=forward];
+N41000 -> N42000[dir=back];
+
+}{
+
+}{
+
+}
+}
