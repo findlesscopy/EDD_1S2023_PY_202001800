@@ -1,5 +1,5 @@
 import { Alumno } from "./Alumnos.js";
-
+import { ArbolNArio } from "./nArio.js";
 //ÁRBOL AVL
 let correlativo = 1
 class Nodo{
@@ -9,6 +9,9 @@ class Nodo{
         this.derecha = null;
         this.altura = 0;
         this.id = correlativo++
+
+        this.ArbolNArio = new ArbolNArio()
+
     }
 }
 
@@ -100,6 +103,34 @@ export class AVL{
     Rotaciondobleizquierda(nodo){
         nodo.izquierda = this.rotacionderecha(nodo.izquierda);
         return this.rotacionizquierda(nodo);
+    }
+
+    login(carnet, password){
+        return this.login_recursivo(this.raiz, carnet, password)
+    }
+    login_recursivo(nodo, carnet, password){
+        if(nodo == null) return null;
+        if(nodo.alumno.carnet == carnet && nodo.alumno.password == password){
+            return nodo.alumno;
+        }else if(nodo.alumno.carnet > carnet){
+            return this.login_recursivo(nodo.izquierda, carnet, password)
+        }else{
+            return this.login_recursivo(nodo.derecha, carnet, password)
+        }
+    }
+    
+    buscar(carnet){
+        return this.buscar_recursivo(this.raiz, carnet)
+    }
+    buscar_recursivo(nodo, carnet){
+        if(nodo == null) return null;
+        if(nodo.alumno.carnet == carnet){
+            return nodo.ArbolNArio;
+        }else if(nodo.alumno.carnet > carnet){
+            return this.buscar_recursivo(nodo.izquierda, carnet)
+        }else{
+            return this.buscar_recursivo(nodo.derecha, carnet)
+        }
     }
 
     //recorridos

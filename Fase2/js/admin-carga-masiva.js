@@ -24,7 +24,8 @@ function cargaAlumnos(e) {
         for (let i = 0; i < alumnos.length; i++) {
             arbol_avl.insertar(alumnos[i]);
         }
-        
+        console.log(arbol_avl);
+        localStorage.setItem("Arbol", JSON.stringify(arbol_avl));
         localStorage.setItem("alumnos", JSON.stringify(alumnos));
         localStorage.setItem("alumnos_preorden", JSON.stringify(arbol_avl.preorden()));
         localStorage.setItem("alumnos_postorden", JSON.stringify(arbol_avl.postorden()));
@@ -32,8 +33,8 @@ function cargaAlumnos(e) {
         //arbol_avl.graficar();
         console.log(localStorage.getItem("alumnos"));
         console.log(localStorage.getItem("alumnos_preorden"));
-        console.log(localStorage.getItem("alumnos_postorden"));
-        console.log(localStorage.getItem("alumnos_inorden"));
+        //console.log(localStorage.getItem("alumnos_postorden"));
+        //console.log(localStorage.getItem("alumnos_inorden"));
         
     }
     lector.readAsText(archivo);
