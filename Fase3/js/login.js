@@ -7,6 +7,8 @@ export class Login {
   login() {
     if (this.email === "admin" && this.password === "admin") {
       return "admin"
+    }else if(this.email === "estudiante" && this.password === "estudiante"){
+      return "estudiante"
     }
   }
 }

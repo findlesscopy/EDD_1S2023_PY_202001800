@@ -10,7 +10,7 @@ class nodoMatriz{
     }
 }
 
-export class Matriz{
+export class MatrizDispersa{
     constructor(){
         this.principal = new nodoMatriz(-1,-1,"Documentos")
         this.coordenadaY = 0;
@@ -180,6 +180,17 @@ export class Matriz{
         if(nuevaColumna !== null && nuevaFila !== null){
             this.insertarNodo(nuevaColumna.posX, nuevaFila.posY, permisos)
         }
+    }
+
+    buscarArchivosCompartidos(carnet){
+        let nuevaColumna = this.buscarC(carnet)
+        let aux = nuevaColumna.abajo
+        let archivos = []
+        while(aux){
+            archivos.push(aux.posicion)
+            aux = aux.abajo
+        }
+        return archivos
     }
 
     reporte(){
