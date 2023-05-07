@@ -135,9 +135,8 @@ loginButton.addEventListener("click", function (event) {
     document.getElementById("navbar_admin").style.display = "block";
 
     document.getElementById("login").style.display = "none";
-  } else if (
-    tabla_hash.buscarLogin(parseInt(emailInput.value), passwordInput.value)
-  ) {
+  } else if (tabla_hash.buscarLogin(parseInt(emailInput.value), passwordInput.value)) {
+    
     alumno_logueado = parseInt(emailInput.value);
     document.getElementById("vista_usuarios_home").style.display = "block";
     document.getElementById("navbar_user").style.display = "block";
@@ -171,9 +170,9 @@ function cargaAlumnos(e) {
     });
 
     for(let i = 0; i < alumnos.length; i++){
-      tabla_hash.insertar(alumnos[i].carnet, alumnos[i].nombre, alumnos[i].password);
+      tabla_hash.insertar(alumnos[i].nombre, alumnos[i].carnet, alumnos[i].password);
     }
-
+    //console.log(tabla_hash.tabla)
   };
   lector.readAsText(archivo);
 }

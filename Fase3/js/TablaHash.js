@@ -175,7 +175,7 @@ export class TablaHash {
   buscarLogin(carnet, password) {
     let indice = this.calculoIndice(carnet)
     if (this.tabla[indice] !== null && this.tabla[indice].carnet === carnet && this.tabla[indice].password === password) {
-        console.log(this.tabla[indice])
+        //console.log(this.tabla[indice])
         return true
     } else {
         let contador = 1
