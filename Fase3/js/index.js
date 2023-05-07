@@ -2,6 +2,7 @@ import { TablaHash } from "./TablaHash.js";
 import { MatrizDispersa } from "./MatrizDispersa.js";
 import { Bloque } from "./BlockChain.js";
 import { encriptacion } from "./Encriptacion.js";
+import { Alumno } from "./Alumnos.js";
 
 let tabla_hash = new TablaHash();
 let matriz = new MatrizDispersa();
@@ -165,20 +166,14 @@ function cargaAlumnos(e) {
     let contenido = e.target.result;
 
     const object = JSON.parse(contenido);
-    //const object = JSON.parse("../carga.json")
-    object.alumnos.map((alumno) => {
-      tabla_hash.insertar(alumno.carnet, alumno.nombre, alumno.password);
+    const alumnos = object.alumnos.map((alumno) => {
+      return new Alumno(alumno.carnet, alumno.nombre, alumno.password);
     });
-    //console.log(tabla_hash.buscarLogin(202000544))
-    /*
-    console.log(tabla_hash.tabla);
-    const grafo = tabla_hash.buscar(202000544)
-    grafo.insertarValores("/","Hola")
-    grafo.insertarValores("/","Mundo")
-    grafo.insertarValores("/","!")
-    console.log(tabla_hash.tabla)
-    console.log(tabla_hash.recorrer())
-    */
+
+    for(let i = 0; i < alumnos.length; i++){
+      tabla_hash.insertar(alumnos[i].carnet, alumnos[i].nombre, alumnos[i].password);
+    }
+
   };
   lector.readAsText(archivo);
 }
